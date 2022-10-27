@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	   <title>Geolocation with Leafletjs</title>
+	   <meta charset="utf-8">
+	   <meta name="description" content="maps using leafletjs api">
+	   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+	   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+	   <style>
+	      body { margin: 0; padding: 0; }
+	      html, body, #demomap { height: 100%; width: 100vw; }
+	   </style>
+	   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+	</head>
+<body>
+<div id="demomap"></div>
+<script>
+   var mymap = L.map('demomap').setView([37.7749, -122.4194], 15)
+   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZ2Vvb2giLCJhIjoiY2w5cTRubXEzMDNodDQwcWN0ODdianV0eiJ9.jJdovgowSGlU9yp5vZGjvw' // you need to leave the single quotes when inserting your access token but if you do not insert the access token here, the code will not work
+}).addTo(mymap);
+
+   var popup = L.popup();
+   
+   function MapClick(e) {
+      popup.setLatLng(e.latlng).setContent("Map clicked at " + e.latlng.toString()).openOn(mymap);
+   }
+   
+   mymap.on('click', MapClick);
+</script>
+
+   <!-- <nav class="nav-scroller fixed-top shadow-sm"></nav>
+   <div class="container-fluid">
+   <nav class="navbar navbar-expand-lg navbar-default navbar-fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">ABC Company</a> 
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcollapsed">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      <div class="collapse navbar-collapse" id="navcollapsed">
+         <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+         </li>
+         
+         <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact <span class="sr-only">(current)</span></a>
+         </li>
+
+         <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle" 
+               href="#" 
+               id="navdropdown" 
+               data-toggle="dropdown">Products <span class="sr-only">(current)</span></a>
+            <div class="dropdown-menu" aria-labelledby="navdropdown">
+               <a class="dropdown-item" href="products.html">All Products</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="productsToy1.html">3D Printed Drone</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="productsToy2.html">3D Printed Rocket</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="productsToy3.html">Arduino Set</a>
+            </div>
+         </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="location.html">Location <span class="sr-only">(current)</span></a>
+         </li>
+      </div>
+   </nav><br> -->
+
+</body>
+</html>
